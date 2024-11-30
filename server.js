@@ -10,7 +10,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware to parse JSON data
-app.use(cors());
+
+// Allow specific origins
+app.use(
+  cors({
+    origin: "https://teha-portfolio1.netlify.app", // Ensure the URL does not have a trailing slash
+    methods: ["GET", "POST"], // Allow specific HTTP methods
+    allowedHeaders: ["Content-Type"], // Allow specific headers
+  })
+);
+
 app.use(express.json());
 
 // POST route for contact form
